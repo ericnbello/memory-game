@@ -1,4 +1,5 @@
 const cards = document.querySelectorAll('.memory-card');
+const resetGame = document.getElementById("reset");
 
 let hasFlippedCard = false;
 let lockBoard = false;
@@ -61,8 +62,9 @@ function resetBoard() {
 })();
 
 function isWinner() {
-    
+
 }
 
 cards.forEach(card => card.addEventListener('click', flipCard));
-isWinner();
+// resetGame.forEach(reset => reset.addEventListener('click', resetBoard));
+// isWinner();

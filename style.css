@@ -13,6 +13,7 @@ body {
     background: url("../img/gradienta.jpeg") ;
     /* background-repeat: no-repeat; */
     background-position: center;
+    /* background-size: cover; */
 }
 
 h1 {
@@ -33,11 +34,12 @@ h2 {
 .banner {
     background: #d9ed92;
     width: 640px;
-    height: 10vh;
-    /* display: flex; */
+    height: auto;
+    display: flexbox;
     margin: auto;
     /* flex-wrap: wrap; */
     padding: 10px;
+    border: 2px solid #52b69a;
     border-radius: 15px;
     text-align: center;
     /* justify-content: center; */
@@ -98,6 +100,7 @@ h2 {
 }
 
 #attribution {
+    /* display: flex; */
     font-size: 8px;
     margin: auto;
     padding: 10px;

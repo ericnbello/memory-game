@@ -13,6 +13,8 @@ let interval;
 let count = 0;
 let moves = document.querySelector('.move-counter');
 
+moves.innerHTML = 0;
+timer.innerHTML = "0 min 0 sec";
 
 function flipCard() { 
     if (lockBoard) return;
@@ -104,15 +106,19 @@ function moveCounter(){
 
 function playerReset() {
     cards.forEach(card => card.classList.remove('flip'));
-    clearInterval(interval);
+
     //reset timer
+    clearInterval(interval);
     count = 0;
-    // timer = minute + " min " + second + " sec";
-    startTimer();
+    if (count < 1) {
+        moves.innerHTML = 0;
+        timer.innerHTML = "0 min 0 sec";
+    }
 }
 
 function winner() {
-
+    cards.forEach(checkForMatch);
+    console.log('Winner!');
 }
 
 cards.forEach(card => card.addEventListener('click', flipCard));

@@ -1,11 +1,20 @@
+// cards
 const cards = document.querySelectorAll('.memory-card');
-const resetGame = document.getElementById("reset");
-
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
 
-function flipCard() {
+// game timer
+let second = 0, minute = 0;
+let timer = document.querySelector(".time-played");
+let interval;
+
+// moves counter
+let count = 0;
+let moves = document.querySelector('.move-counter');
+
+
+function flipCard() { 
     if (lockBoard) return;
     if (this === firstCard) return;
     this.classList.add('flip');
@@ -29,6 +38,8 @@ function checkForMatch() {
     let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
 
     isMatch ? disableCards() : unflipCards();
+    
+    moveCounter();
 }
 
 function disableCards() {
@@ -61,10 +72,47 @@ function resetBoard() {
     })
 })();
 
-function isWinner() {
+function startTimer(){
+    // timer.innerHTML = minute + " min " + second + " sec";
+    interval = setInterval(function(){
+        timer.innerHTML = minute + " min " + second + " sec";
+        second++;
+        if(second == 60){
+            minute++;
+            second = 0;
+        }
+        if(minute == 60){
+            hour++;
+            minute = 0;
+        }
+    }, 1000);
+}
+
+function moveCounter(){   
+    // moves.innerHTML = count; 
+    count++;    
+    moves.innerHTML = count;
+
+    //start timer on first move
+    if(count == 1){
+        second = 0;
+        minute = 0; 
+        hour = 0;
+        startTimer();
+    }
+}
+
+function playerReset() {
+    cards.forEach(card => card.classList.remove('flip'));
+    clearInterval(interval);
+    //reset timer
+    count = 0;
+    // timer = minute + " min " + second + " sec";
+    startTimer();
+}
+
+function winner() {
 
 }
 
 cards.forEach(card => card.addEventListener('click', flipCard));
-// resetGame.forEach(reset => reset.addEventListener('click', resetBoard));
-// isWinner();

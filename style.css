@@ -50,6 +50,15 @@ h2 {
 
 .game-options {
     text-align: left;
+    display: inline-flex;
+    justify-content: space-between;
+    /* padding: 5px; */
+}
+
+#reset {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
 }
 
 .memory-game {

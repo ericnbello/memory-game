@@ -60,4 +60,9 @@ function resetBoard() {
     })
 })();
 
+function isWinner() {
+    
+}
+
 cards.forEach(card => card.addEventListener('click', flipCard));
+isWinner();

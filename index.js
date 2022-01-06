@@ -16,6 +16,8 @@ let moves = document.querySelector('.move-counter');
 moves.innerHTML = 0;
 timer.innerHTML = "0 min 0 sec";
 
+shuffle();
+
 function flipCard() { 
     if (lockBoard) return;
     if (this === firstCard) return;
@@ -44,6 +46,10 @@ function checkForMatch() {
     moveCounter();
 }
 
+function enableCards() {
+    cards.forEach(card => card.addEventListener('click', flipCard));
+}
+
 function disableCards() {
     // do cards match?
     firstCard.removeEventListener('click', flipCard);
@@ -67,12 +73,12 @@ function resetBoard() {
     [firstCard, secondCard] = [null, null];
 }
 
-(function shuffle() {
+function shuffle() {
     cards.forEach(card => {
         let randomPos = Math.floor(Math.random() * 20)
         card.style.order = randomPos;
     })
-})();
+}//)();
 
 function startTimer(){
     // timer.innerHTML = minute + " min " + second + " sec";
@@ -106,19 +112,21 @@ function moveCounter(){
 
 function playerReset() {
     cards.forEach(card => card.classList.remove('flip'));
-
-    //reset timer
+    
+    //reset timer and score
     clearInterval(interval);
     count = 0;
     if (count < 1) {
         moves.innerHTML = 0;
         timer.innerHTML = "0 min 0 sec";
+        enableCards();
     }
+    shuffle();
 }
 
-function winner() {
-    cards.forEach(checkForMatch);
-    console.log('Winner!');
-}
+// function winner() {
+//     cards.forEach(checkForMatch);
+//     console.log('Winner!');
+// }
 
-cards.forEach(card => card.addEventListener('click', flipCard));
+// cards.forEach(card => card.addEventListener('click', flipCard));

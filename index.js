@@ -130,3 +130,4 @@ function playerReset() {
 // }
 
 // cards.forEach(card => card.addEventListener('click', flipCard));
+enableCards();
